@@ -17,15 +17,12 @@ function verificaQuimico(item) {
   }
 }
 
-let j = 0;
-while (arr.length > j) {
-  j++;
-  qualMolecula = arr[j].find(function (item) {
-    if (item === "CO") {
-      return (qualMolecula = item);
-    }
+for (let i = 0; i < arr.length; i++) {
+  qualMolecula = arr[i].find(function (item) {
+    return item === "CO2";
   });
-  if ((qualMolecula = !undefined)) {
+
+  if (qualMolecula) {
     break;
   }
 }
