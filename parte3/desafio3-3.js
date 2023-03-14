@@ -74,19 +74,16 @@ const info = [
     tempoDeEmpresa: "11 anos",
   },
 ];
-const findItem = (object, index) =>
-  Object.keys(object).filter((item) => item.toString() == index);
 
-let chaves = ["nome", "cargo", "email"];
+const lideres = info.filter(filtraLider);
 
-let resultadoRaw = chaves.forEach(
-  (chave) =>
-    function () {
-      return info[findItem(info, offset)];
-    }
-);
+function filtraLider(value) {
+  if (value.cargo == "Liderança" || value.cargo == "Diretoria") {
+    return value;
+  }
+}
+console.log(lideres);
 
-console.log();
 /* 1- Método para devolver offset e limit
 2-Verificar se é liderança ou diretoria Object filter
 3- Retorno / não encontrado ou encontrado (personfind)
