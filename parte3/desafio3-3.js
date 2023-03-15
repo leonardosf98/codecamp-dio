@@ -1,5 +1,5 @@
-let offset = 0;
-let limit = 4;
+let offset = 6;
+let limit = 9;
 let personFind = false;
 
 const info = [
@@ -74,39 +74,52 @@ const info = [
     tempoDeEmpresa: "11 anos",
   },
 ];
+//primeira parte => aplicar offset e limit
 
-const lideres = info.filter(filtraLider);
+const findItem = (object, index) =>
+  Object.keys(object).filter((item) => item.toString() == index);
+
+let arrayRaw = [];
+for (let i = 0; i < limit; i++) {
+  let resultado = info[findItem(info, offset + i)];
+  if (resultado) {
+    arrayRaw.push(resultado);
+  }
+}
+
+//segunda parte => filtrar cargos de liderança
+
+const lideres = arrayRaw.filter(filtraLider);
 
 function filtraLider(value) {
-  if (value.cargo == "Liderança" || value.cargo == "Diretoria") {
+  let emailTeste = value.email;
+  let finalEmail = "@oilcorp.com.br";
+  if (
+    value.cargo == "Liderança" ||
+    (value.cargo == "Diretoria" && emailTeste.includes(finalEmail))
+  ) {
     return value;
   }
 }
 
-console.log(lideres);
+//terceira parte => mapear informações selecionadas
 
 function mapearInformacao(lider) {
   return {
-    cargo: lider.cargo,
     nome: lider.nome,
-    email: lider.email
-  }
+    cargo: lider.cargo,
+    email: lider.email,
+  };
 }
 
 const lideresMapeados = lideres.map(mapearInformacao);
-console.log(lideresMapeados);
-const findItem = (object, index) =>
-  Object.keys(object).filter((item) => item.toString() == index);
-info[findItem(info, offset)]
 
-let arrayRaw = [];
-  for (let i = 0; i < limit; i++ ){
-    let resultado = info[findItem(info, offset + i)]
-    arrayRaw.push(resultado)
-    
-  }
-console.log(resultado)
-/* 1- Método para devolver offset e limit
-2-Verificar se é liderança ou diretoria Object filter
-3- Retorno / não encontrado ou encontrado (personfind)
-4- validar e-mail*/
+if (arrayRaw.length === 0) {
+  console.log("Não existem registros encontrados");
+} else {
+  lideresMapeados.forEach(function (lider) {
+    console.log(
+      `Nome: ${lider.nome}, Cargo: ${lider.cargo}, Email: ${lider.email}`
+    );
+  });
+}
