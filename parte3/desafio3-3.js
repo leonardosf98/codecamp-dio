@@ -82,8 +82,30 @@ function filtraLider(value) {
     return value;
   }
 }
+
 console.log(lideres);
 
+function mapearInformacao(lider) {
+  return {
+    cargo: lider.cargo,
+    nome: lider.nome,
+    email: lider.email
+  }
+}
+
+const lideresMapeados = lideres.map(mapearInformacao);
+console.log(lideresMapeados);
+const findItem = (object, index) =>
+  Object.keys(object).filter((item) => item.toString() == index);
+info[findItem(info, offset)]
+
+let arrayRaw = [];
+  for (let i = 0; i < limit; i++ ){
+    let resultado = info[findItem(info, offset + i)]
+    arrayRaw.push(resultado)
+    
+  }
+console.log(resultado)
 /* 1- Método para devolver offset e limit
 2-Verificar se é liderança ou diretoria Object filter
 3- Retorno / não encontrado ou encontrado (personfind)
