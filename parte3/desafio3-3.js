@@ -1,6 +1,5 @@
-let offset = 6;
+let offset = 7;
 let limit = 9;
-let personFind = false;
 
 const info = [
   {
@@ -80,7 +79,7 @@ const findItem = (object, index) =>
   Object.keys(object).filter((item) => item.toString() == index);
 
 let arrayRaw = [];
-for (let i = 0; i < limit; i++) {
+for (let i = 1; i <= limit - offset; i++) {
   let resultado = info[findItem(info, offset + i)];
   if (resultado) {
     arrayRaw.push(resultado);
@@ -114,7 +113,7 @@ function mapearInformacao(lider) {
 
 const lideresMapeados = lideres.map(mapearInformacao);
 
-if (arrayRaw.length === 0) {
+if (lideres.length === 0) {
   console.log("Não existem registros encontrados");
 } else {
   lideresMapeados.forEach(function (lider) {
