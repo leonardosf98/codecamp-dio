@@ -91,9 +91,7 @@ const findItem = (object, index) =>
   Object.keys(object).filter((item) => item.toString() == index);
 
 let arrayRaw = [];
-if (offset == 0) {
-  offset = 1;
-}
+
 for (let i = 0; i <= limit - offset; i++) {
   let resultado = info[findItem(info, offset + i)];
   if (resultado) {
